@@ -23,21 +23,28 @@ const HEROES: Hero[] = [
 @Component({
   selector: 'my-app',
   template: `
-    <h1>{{title}}</h1>
-    <h2>{{hero.name}} details!</h2>
-    <div><label>id: </label>{{hero.id}}</div>
-    <div><label>name: </label>{{hero.name}}</div>
-    <div>
-      <label>name: </label>
-      <input [(ngModel)]="hero.name" placeholder="name">
-    </div>
-
-    <h2>My Heroes</h2>
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes">
+   <h1>{{title}}</h1>
+   <h2>My Heroes</h2>
+   <ul class="heroes">
+      <!-- how does changing input, changes the hero in the list -->
+      <li *ngFor="let hero of heroes" 
+        [class.selected]="hero === selectedHero"  
+        (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
-    </ul>
+   </ul>
+   <div *ngIf="selectedHero">
+      <h2>{{selectedHero.name}} details!</h2>
+
+      <div><label>id: </label>{{selectedHero.id}}</div>
+      <div><label>name: </label>{{selectedHero.name}}</div>
+
+      <div>
+        <label>name: </label>
+        <!-- ngModel serve as two way binding -->
+        <input [(ngModel)]="selectedHero.name" placeholder="name">
+      </div>
+   </div>
   `,
   styles: [`
   .selected {
@@ -93,11 +100,13 @@ const HEROES: Hero[] = [
 // and not HERE
 
 export class AppComponent  { 
- hero: Hero = {
-   id: 1,
-   name: 'Windstorm'  
- };	 
+  title = 'Tour of Heroes';
+  heroes = HEROES;
 
- heroes = HEROES;
+  selectedHero: Hero;
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
   
 }
