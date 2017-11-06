@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
 
-// why do we need at top
-export class Hero {
-  id: number;
-  name: string;
-}
 
 //hero data and will be separated out later
 const HEROES: Hero[] = [
@@ -33,18 +29,7 @@ const HEROES: Hero[] = [
         <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
    </ul>
-   <div *ngIf="selectedHero">
-      <h2>{{selectedHero.name}} details!</h2>
-
-      <div><label>id: </label>{{selectedHero.id}}</div>
-      <div><label>name: </label>{{selectedHero.name}}</div>
-
-      <div>
-        <label>name: </label>
-        <!-- ngModel serve as two way binding -->
-        <input [(ngModel)]="selectedHero.name" placeholder="name">
-      </div>
-   </div>
+   <hero-detail [hero]="selectedHero"></hero-detail>
   `,
   styles: [`
   .selected {
