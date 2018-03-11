@@ -19,11 +19,11 @@ import { AppRoutingModule } from './app-routing.module';
     MessagesComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,      //every apps needs to run in a browser
     FormsModule,
     AppRoutingModule
   ],
   providers: [HeroService, MessageService ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]   // root component and angular inserts into index.html
 })
 export class AppModule { }
