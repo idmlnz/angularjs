@@ -10,7 +10,8 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  selectedHero: Hero;
+
+  //selectedHero: Hero; - no longer needed with routes enabled
  
   /**
    * When Angular creates a HeroesComponent, the Dependency Injection system 
@@ -41,7 +42,9 @@ export class HeroesComponent implements OnInit {
         .subscribe(heroes => this.heroes = heroes);
   }
 
+  /**  No longer needed with routes enabled
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
+  */
 }
